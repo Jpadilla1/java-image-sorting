@@ -24,25 +24,41 @@ public class app {
 		while (scan.hasNext()) {
 			list.add( new Pixel( i++, scan.nextInt(), scan.nextInt(), scan.nextInt() ));
 		}
-		
+
 		scan.close();
 
 		frame = new PPM(list, width, height, nColors, type);
 
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
-
-		frame.shuffle();
 		
+		//		Selection Sort
+		
+		//		frame.shuffle();
+		//
+		//		Thread.sleep(2000);
+		//
+		//		frame.refresh();
+		//
+		//		frame.selectionSort();
+		//
+		//		frame.refresh();
+
+		
+		//		Insertion Sort
+		
+		frame.shuffle();
+
 		Thread.sleep(2000);
 
 		frame.refresh();
-		
-		frame.selectionSort();
+
+		frame.insertionSort();
 
 		frame.refresh();
 
+
 	}
-	
+
 
 }

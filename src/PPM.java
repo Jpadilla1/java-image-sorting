@@ -22,7 +22,7 @@ public class PPM extends JFrame{
 		this.height = height;
 		this.nColors = nColors;
 		this.type = type;
-		
+
 		label = new JLabel(this.getImage());
 		add(label);
 		pack();
@@ -72,7 +72,7 @@ public class PPM extends JFrame{
 	public void shuffle(){
 		Collections.shuffle(pixels);
 	}
-	
+
 	public void refresh() {
 		label.setIcon(this.getImage());
 		this.repaint();
@@ -108,6 +108,25 @@ public class PPM extends JFrame{
 				refresh();
 			}
 		}
-
 	}
+
+	public void insertionSort(){
+	    Pixel temp;
+		int refreshRate = 0;
+	    for (int i = 1; i < pixels.size(); i++) {
+		    for(int j = i ; j > 0 ; j--){
+			    if(pixels.get(j).getPos() < pixels.get(j-1).getPos()){
+				    temp = pixels.get(j);
+				    pixels.set(j, pixels.get(j-1));
+				    pixels.set(j-1, temp);
+			    }
+		    }
+			refreshRate++;
+			if (refreshRate >= 1000){
+				refreshRate = 0;
+				refresh();
+			}
+	    }
+	}
+
 }
