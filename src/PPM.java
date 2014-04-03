@@ -111,22 +111,56 @@ public class PPM extends JFrame{
 	}
 
 	public void insertionSort(){
-	    Pixel temp;
+		Pixel temp;
 		int refreshRate = 0;
-	    for (int i = 1; i < pixels.size(); i++) {
-		    for(int j = i ; j > 0 ; j--){
-			    if(pixels.get(j).getPos() < pixels.get(j-1).getPos()){
-				    temp = pixels.get(j);
-				    pixels.set(j, pixels.get(j-1));
-				    pixels.set(j-1, temp);
-			    }
-		    }
+		for (int i = 1; i < pixels.size(); i++) {
+			for(int j = i ; j > 0 ; j--){
+				if(pixels.get(j).getPos() < pixels.get(j-1).getPos()){
+					temp = pixels.get(j);
+					pixels.set(j, pixels.get(j-1));
+					pixels.set(j-1, temp);
+				}
+			}
 			refreshRate++;
 			if (refreshRate >= 1000){
 				refreshRate = 0;
 				refresh();
 			}
-	    }
+		}
+	}
+
+	public ArrayList<Pixel> mergeSort(ArrayList<Pixel> pixels, int refreshRate) {
+		ArrayList<Pixel> firstHalf = new ArrayList<>();
+		ArrayList<Pixel> secondHalf = new ArrayList<>();
+		for (int i = 0; i < pixels.size() / 2; i++) {
+			firstHalf.add(pixels.get(i));
+		}
+		for (int i = pixels.size() / 2; i < pixels.size(); i++) {
+			secondHalf.add(pixels.get(i));
+		}
+		
+		return merge(mergeSort(firstHalf, refreshRate), mergeSort(secondHalf, refreshRate));
+	}
+
+	public ArrayList<Pixel> merge(ArrayList<Pixel> l1, ArrayList<Pixel> l2) {
+		if (l1.size() == 0) {
+			return l2;
+		}
+		if (l2.size() == 0) {
+			return l1;
+		}
+		ArrayList<Pixel> result = new ArrayList<>();
+		Pixel nextElement;
+		if (l1.get(0).getPos() > l2.get(0).getPos()) {
+			nextElement = l2.get(0);
+			l2.remove(0);
+		} else {
+			nextElement = l1.get(0);
+			l1.remove(0);
+		}
+		result.add(nextElement);
+		result.addAll(merge(l1,l2));
+		return result;
 	}
 
 }

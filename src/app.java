@@ -31,9 +31,9 @@ public class app {
 
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
-		
+
 		//		Selection Sort
-		
+
 		//		frame.shuffle();
 		//
 		//		Thread.sleep(2000);
@@ -44,16 +44,30 @@ public class app {
 		//
 		//		frame.refresh();
 
-		
+
 		//		Insertion Sort
-		
+
+		//		frame.shuffle();
+		//
+		//		Thread.sleep(2000);
+		//
+		//		frame.refresh();
+		//
+		//		frame.insertionSort();
+		//
+		//		frame.refresh();
+
+		//		Merge Sort
+
 		frame.shuffle();
 
 		Thread.sleep(2000);
 
 		frame.refresh();
 
-		frame.insertionSort();
+		frame.mergeSort(frame.getPixels(), 0);
+		
+		System.out.println(frame.getPixels());
 
 		frame.refresh();
 
