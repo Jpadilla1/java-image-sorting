@@ -10,7 +10,7 @@ public class app {
 
 	public static void main(String[] args) throws FileNotFoundException, InterruptedException {
 
-		File image = new File("duke-guitar.ppm");
+		File image = new File("lancia_stratos.ppm");
 		Scanner scan = new Scanner(image);
 
 		ArrayList<Pixel> list = new ArrayList<>();
@@ -33,43 +33,93 @@ public class app {
 		frame.setVisible(true);
 
 		//		Selection Sort
-
-		//		frame.shuffle();
-		//
-		//		Thread.sleep(2000);
-		//
-		//		frame.refresh();
-		//
-		//		frame.selectionSort();
-		//
-		//		frame.refresh();
-
-
-		//		Insertion Sort
-
-		//		frame.shuffle();
-		//
-		//		Thread.sleep(2000);
-		//
-		//		frame.refresh();
-		//
-		//		frame.insertionSort();
-		//
-		//		frame.refresh();
-
-		//		Merge Sort
-
+		
+		System.out.println("Selection sort");
+		
 		frame.shuffle();
 
 		Thread.sleep(2000);
 
 		frame.refresh();
 
-		frame.mergeSort(frame.getPixels(), 0);
-		
-		System.out.println(frame.getPixels());
+		frame.selectionSort();
 
 		frame.refresh();
+
+
+		//		Insertion Sort
+
+		System.out.println("Insertion sort");
+		
+		frame.shuffle();
+
+		Thread.sleep(2000);
+
+		frame.refresh();
+
+		frame.insertionSort();
+
+		frame.refresh();
+
+		//		Quick Sort
+
+		System.out.println("Quick sort");
+		
+		frame.shuffle();
+
+		Thread.sleep(2000);
+
+		frame.refresh();
+
+		frame.quickSort();
+
+		frame.refresh();
+
+		// 		Merge Sort
+
+		System.out.println("Merge sort");
+		
+		frame.shuffle();
+
+		Thread.sleep(2000);
+
+		frame.refresh();
+
+		frame.mergeSort();
+
+		frame.refresh();
+
+		// 		Shell Sort
+
+		System.out.println("Shell sort");
+		
+		frame.shuffle();
+
+		Thread.sleep(2000);
+
+		frame.refresh();
+
+		frame.shellSort();
+
+		frame.refresh();
+
+		// 		Heap Sort
+
+		System.out.println("Heap sort");
+		
+		frame.shuffle();
+
+		Thread.sleep(2000);
+
+		frame.refresh();
+
+		frame.heapSort();
+
+		frame.refresh();
+
+		Thread.sleep(2000);
+		
+		System.exit(0);
 
 
 	}
