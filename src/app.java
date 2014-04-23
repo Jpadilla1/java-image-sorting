@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class app {
 
-	static PPM frame;
+	static PPMFrame frame;
 
 	public static void main(String[] args) throws FileNotFoundException, InterruptedException {
 
@@ -27,102 +27,71 @@ public class app {
 
 		scan.close();
 
-		frame = new PPM(list, width, height, nColors, type);
+		frame = new PPMFrame(list, width, height, nColors, type);
 
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 
-		//		Selection Sort
-		
-		System.out.println("Selection sort");
-		
-		frame.shuffle();
+		Scanner kb = new Scanner(System.in);
+		int selec = 0;
+		do {
 
-		Thread.sleep(2000);
+			menu();
+			selec = Integer.parseInt(kb.next());
 
-		frame.refresh();
+			frame.shuffle();
+			frame.refresh();
+			Thread.sleep(2000);
 
-		frame.selectionSort();
+			sort(selec);
+			frame.refresh();
+			
+		} while(selec != -1);
 
-		frame.refresh();
-
-
-		//		Insertion Sort
-
-		System.out.println("Insertion sort");
-		
-		frame.shuffle();
-
-		Thread.sleep(2000);
-
-		frame.refresh();
-
-		frame.insertionSort();
-
-		frame.refresh();
-
-		//		Quick Sort
-
-		System.out.println("Quick sort");
-		
-		frame.shuffle();
-
-		Thread.sleep(2000);
-
-		frame.refresh();
-
-		frame.quickSort();
-
-		frame.refresh();
-
-		// 		Merge Sort
-
-		System.out.println("Merge sort");
-		
-		frame.shuffle();
-
-		Thread.sleep(2000);
-
-		frame.refresh();
-
-		frame.mergeSort();
-
-		frame.refresh();
-
-		// 		Shell Sort
-
-		System.out.println("Shell sort");
-		
-		frame.shuffle();
-
-		Thread.sleep(2000);
-
-		frame.refresh();
-
-		frame.shellSort();
-
-		frame.refresh();
-
-		// 		Heap Sort
-
-		System.out.println("Heap sort");
-		
-		frame.shuffle();
-
-		Thread.sleep(2000);
-
-		frame.refresh();
-
-		frame.heapSort();
-
-		frame.refresh();
-
-		Thread.sleep(2000);
-		
-		System.exit(0);
-
+		kb.close();
 
 	}
 
+	public static void sort(int selec) {
+		switch(selec){
+		case 1:
+			System.out.println("Selection Sort");
+			frame.selectionSort();
+			break;
+		case 2:
+			System.out.println("Insertion Sort");
+			frame.insertionSort();
+			break;
+		case 3:
+			System.out.println("Merge Sort");
+			frame.mergeSort();
+			break;
+		case 4:
+			System.out.println("Quick Sort");
+			frame.quickSort();
+			break;
+		case 5:
+			System.out.println("Shell Sort");
+			frame.shellSort();
+			break;
+		case 6:
+			System.out.println("Heap Sort");
+			frame.heapSort();
+			break;
+		default:
+			System.err.println("not a valid choice! Select between 1 and 6.");
+		}
+		System.out.println();
+	}
+
+	public static void menu(){
+		String message = "1. Selection\n"
+				+ "2. Insertion\n"
+				+ "3. Merge\n"
+				+ "4. Quick\n"
+				+ "5. Shell\n"
+				+ "6. Heap\n:";
+		System.out.print(message);
+	}
 
 }

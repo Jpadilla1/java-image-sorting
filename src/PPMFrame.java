@@ -9,14 +9,14 @@ import javax.swing.JLabel;
 
 
 @SuppressWarnings("serial")
-public class PPM extends JFrame{
+public class PPMFrame extends JFrame{
 
 	private ArrayList<Pixel> pixels = new ArrayList<>();
 	private int width, height, nColors;
 	private String type;
 	private JLabel label;
 
-	public PPM(ArrayList<Pixel> pixels, int width, int height, int nColors, String type) throws FileNotFoundException {
+	public PPMFrame(ArrayList<Pixel> pixels, int width, int height, int nColors, String type) throws FileNotFoundException {
 		this.pixels = pixels;
 		this.width = width;
 		this.height = height;
@@ -139,7 +139,7 @@ public class PPM extends JFrame{
 	private void qsort(ArrayList<Pixel> a, int lo, int hi, int refreshRate) { 
 		if (hi <= lo) return;
 
-		if (refreshRate >= 25) {
+		if (refreshRate >= 10) {
 			refreshRate = 0;
 			refresh();
 		}
