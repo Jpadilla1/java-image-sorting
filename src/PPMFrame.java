@@ -1,6 +1,7 @@
 import java.awt.image.BufferedImage;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 import javax.swing.ImageIcon;
@@ -15,6 +16,7 @@ public class PPMFrame extends JFrame{
 	private int width, height, nColors;
 	private String type;
 	private JLabel label;
+	private int rotated = 0;
 
 	public PPMFrame(ArrayList<Pixel> pixels, int width, int height, int nColors, String type) throws FileNotFoundException {
 		this.pixels = pixels;
@@ -26,6 +28,7 @@ public class PPMFrame extends JFrame{
 		label = new JLabel(this.getImage());
 		add(label);
 		pack();
+		setSize(width, height);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 
@@ -85,6 +88,40 @@ public class PPMFrame extends JFrame{
 			bi.setRGB( i % width, i / width, pixels.get(i).getRGB());
 		}
 		return new ImageIcon(bi);
+	}
+	
+	public void reset(){
+		if (rotated == 1) {
+			int tmp = this.width;
+			this.width =this.height;
+			this.height=tmp;
+			rotated = 0;
+			setSize(this.width, this.height);
+		}
+		refresh();
+		heapSort();
+		
+	}
+	
+	public void rotateAndFlip(){
+		Pixel[] pixelsCopy = new Pixel[pixels.size()];
+		if (rotated == 0) {
+			int tmp = this.width;
+			this.width =this.height;
+			this.height=tmp;
+			rotated = 1;
+			setSize(this.width, this.height);
+		}
+		for (int i = 0; i < pixels.size(); i++) {
+			int idx = (((width-1)*pixels.get(i).getPos())+pixels.get(i).getPos()-1) % pixels.size();
+			while (pixelsCopy[idx] != null)
+				idx--;
+			pixelsCopy[idx] = pixels.get(i);
+		}
+		refresh();
+		this.pack();
+		pixels = new ArrayList<Pixel>(Arrays.asList(pixelsCopy));
+		refresh();
 	}
 
 	public void selectionSort() {
